@@ -56,6 +56,12 @@ export function createApp(store, { log = console.log } = {}) {
     response.json({ status: 'healthy', version: '1.0.0', ...(COMMIT && { commit: COMMIT }) })
   })
 
+  app.post('/links', async (request, response) => {
+    const targetUrl = request.body?.targetUrl
+    if (!isAbsoluteUrl(targetUrl)) {
+      return response.status(400).json({ error: 'targetUrl must be an absolute URL' })
+    }
+
     const link = await store.create({
       code: generateCode(),
       targetUrl,
