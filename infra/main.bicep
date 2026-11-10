@@ -50,6 +50,7 @@ module appService 'modules/app-service.bicep' = {
     appName: appName
     appServicePlanId: appServicePlan.outputs.appServicePlanId
     linuxFxVersion: linuxFxVersion
+    workspaceId: logAnalytics.outputs.workspaceId
   }
 }
 
